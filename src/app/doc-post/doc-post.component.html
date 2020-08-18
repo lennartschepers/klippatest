@@ -1,4 +1,41 @@
 <form>
 <input id="myForm" type="file" name="file" (change)="postMethod($event.target.files)">
 </form>
-{{ json }}
+
+<div *ngIf="response">
+    <img [src]="url" *ngIf="url">
+    <table>
+        <tr>
+            <td style="float:left">Document type: </td>
+            <td style="float:right">{{response.document_type}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Amount: </td>
+            <td style="float:right"> {{response.amount}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Amount change: </td>
+            <td style="float:right"> {{response.amount_change}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Amount ex. VAT:</td>
+            <td style="float:right">{{response.amountexvat}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Barcodes:</td>
+            <td style="float:right"> {{response.barcodes}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Currency:</td>
+            <td style="float:right"> {{response.currency}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer adress:</td>
+            <td style="float:right">{{response.customer_adress}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Date:</td>
+            <td style="float:right"> {{response.date}}</td>
+        </tr>
+    </table>
+</div>
