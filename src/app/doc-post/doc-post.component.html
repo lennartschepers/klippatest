@@ -1,14 +1,21 @@
-<form>
-<input id="myForm" type="file" name="file" (change)="postMethod($event.target.files)">
-</form>
+<div>
+    <div class= "header">
+        <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToXLFmDAZywYcDjy0bUNQEffqpIVgwxnXRmA&usqp=CAU" alt="">
+
+        <form>
+        <input id="myForm" type="file" name="file" (change)="postMethod($event.target.files)">
+        </form>
+    </div>
 
 <div *ngIf="response">
-    <img [src]="url" *ngIf="url">
+    <button id="refresh" (click)=refresh()> Retry this file</button>
+</div>
+<div class="loader" [ngStyle]="{'display': display}"> </div>
+
+<div *ngIf="response">
+    <div class="body">
+    <img class = "receipt" [src]="url" *ngIf="url">
     <table>
-        <tr>
-            <td style="float:left">Document type: </td>
-            <td style="float:right">{{response.document_type}}</td>
-        </tr>
         <tr>
             <td style="float:left">Amount: </td>
             <td style="float:right"> {{response.amount}}</td>
@@ -30,12 +37,322 @@
             <td style="float:right"> {{response.currency}}</td>
         </tr>
         <tr>
-            <td style="float:left">Customer adress:</td>
-            <td style="float:right">{{response.customer_adress}}</td>
+            <td style="float:left">Customer address:</td>
+            <td style="float:right">{{response.customer_address}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer bank account number:</td>
+            <td style="float:right">{{response.customer_bank_account_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer bank account number bic:</td>
+            <td style="float:right">{{response.customer_bank_account_bic}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer city:</td>
+            <td style="float:right">{{response.customer_city}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer COC number:</td>
+            <td style="float:right">{{response.customer_coc_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer country:</td>
+            <td style="float:right">{{response.customer_country}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer email:</td>
+            <td style="float:right">{{response.customer_email}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer house number:</td>
+            <td style="float:right">{{response.customer_house_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer municipality :</td>
+            <td style="float:right">{{response.customer_municipality}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer name :</td>
+            <td style="float:right">{{response.customer_name}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer number:</td>
+            <td style="float:right">{{response.customer_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer phone</td>
+            <td style="float:right">{{response.customer_phone}}</td>
+        </tr>
+
+        
+        <tr>
+            <td style="float:left">Customer province :</td>
+            <td style="float:right">{{response.customer_province}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer reference :</td>
+            <td style="float:right">{{response.customer_reference}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer street name:</td>
+            <td style="float:right">{{response.customer_street_name}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer VAT number</td>
+            <td style="float:right">{{response.customer_vat_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer website :</td>
+            <td style="float:right">{{response.customer_website}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Customer zipcode:</td>
+            <td style="float:right">{{response.customer_zipcode}}</td>
         </tr>
         <tr>
             <td style="float:left">Date:</td>
-            <td style="float:right"> {{response.date}}</td>
+            <td style="float:right">{{response.date}}</td>
+        </tr>
+
+
+        <tr>
+            <td style="float:left">Document subject:</td>
+            <td style="float:right">{{response.document_subject}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Document type:</td>
+            <td style="float:right">{{response.document_type}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Hash:</td>
+            <td style="float:right">{{response.hash}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Hash duplicate:</td>
+            <td style="float:right">{{response.hash_duplicate}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Invoice number</td>
+            <td style="float:right">{{response.invoice_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Invoice type:</td>
+            <td style="float:right">{{response.invoice_type}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Lines:</td>
+            <td style="float:right">amount: {{response.lines[0].lineitems[0].amount | json}}  amount each: {{response.lines[0].lineitems[0].amount_each | json}} amount ex vat: {{response.lines[0].lineitems[0].amount_ex_vat | json}} description: {{response.lines[0].lineitems[0].description | json}}  quantity: {{response.lines[0].lineitems[0].quantity | json}} sku: {{response.lines[0].lineitems[0].sku | json}} title: {{response.lines[0].lineitems[0].title | json}} vat amount: {{response.lines[0].lineitems[0].vat_amount | json}}  vat_code {{response.lines[0].lineitems[0].vat_code | json}} vat percentage: {{response.lines[0].lineitems[0].vat_percentage | json}} </td>
+        </tr>
+        
+        <tr>
+            <td style="float:left">Matched keywords:</td>
+            <td style="float:right">{{response.matched_keywords}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Matched lineitems:</td>
+            <td style="float:right">{{response.matched_keywords}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Matched purchase order id:</td>
+            <td style="float:right">{{response.matched_purchase_order_id}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant address:</td>
+            <td style="float:right">{{response.merchant_address}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant bank account number:</td>
+            <td style="float:right">{{response.merchant_account_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant bank account number bic:</td>
+            <td style="float:right">{{response.merchant_bank_account_number_bic}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant domestic account number:</td>
+            <td style="float:right">{{response.merchant_domestic_account_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant bank domestic bank code:</td>
+            <td style="float:right">{{response.merchant_bank_domestic_bank_code}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant chain liability bank account number:</td>
+            <td style="float:right">{{response.merchant_chain_liability_bank_account_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant city:</td>
+            <td style="float:right">{{response.merchant_city}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant COC number:</td>
+            <td style="float:right">{{response.merchant_coc_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant country:</td>
+            <td style="float:right">{{response.merchant_country}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant country code:</td>
+            <td style="float:right">{{response.merchant_country_code}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant email:</td>
+            <td style="float:right">{{response.merchant_email}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant house number:</td>
+            <td style="float:right">{{response.merchant_house_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant id:</td>
+            <td style="float:right">{{response.merchant_id}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant main activity code:</td>
+            <td style="float:right">{{response.merchant_main_activity_code}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant municipality:</td>
+            <td style="float:right">{{response.merchant_municipality}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant name:</td>
+            <td style="float:right">{{response.merchant_name}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant phone:</td>
+            <td style="float:right">{{response.merchant_phone}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant province:</td>
+            <td style="float:right">{{response.merchant_province}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant street name:</td>
+            <td style="float:right">{{response.merchant_street_name}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant vat number:</td>
+            <td style="float:right">{{response.merchant_vat_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant website:</td>
+            <td style="float:right">{{response.merchant_website}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Merchant zipcode:</td>
+            <td style="float:right">{{response.merchant_zipcode}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Order number:</td>
+            <td style="float:right">{{response.order_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Package number:</td>
+            <td style="float:right">{{response.package_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Payment auth code:</td>
+            <td style="float:right">{{response.payment_auth_code}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Payment card account number:</td>
+            <td style="float:right">{{response.payment_card_account_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Payment card bank:</td>
+            <td style="float:right">{{response.payment_card_bank}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Payment card issuer:</td>
+            <td style="float:right">{{response.payment_card_issuer}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Payment card number:</td>
+            <td style="float:right">{{response.payment_card_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Payment card due date:</td>
+            <td style="float:right">{{response.payment_card_due_data}}</td>
+        </tr>
+        
+        <tr>
+            <td style="float:left">Payment slip code:</td>
+            <td style="float:right">{{response.payment_slip_code}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Payment slip customer number:</td>
+            <td style="float:right">{{response.payment_slip_customer_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Payment slip reference number:</td>
+            <td style="float:right">{{response.payment_slip_reference_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">payment method:</td>
+            <td style="float:right">{{response.paymentmethod}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Purchase date:</td>
+            <td style="float:right">{{response.purchasedate}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Purchase time:</td>
+            <td style="float:right">{{response.purchasetime}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Raw text:</td>
+            <td style="float:right">{{response.raw_text}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Receipt number:</td>
+            <td style="float:right">{{response.receipt_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Server:</td>
+            <td style="float:right">{{response.server}}</td>
+        </tr>
+        
+        
+        <tr>
+            <td style="float:left">Show number:</td>
+            <td style="float:right">{{response.show_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Table group:</td>
+            <td style="float:right">{{response.table_group}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Table number:</td>
+            <td style="float:right">{{response.table_number}}</td>
+        </tr>
+
+        <tr>
+            <td style="float:left">Transaction number:</td>
+            <td style="float:right">{{response.transaction_number}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Transction reference:</td>
+            <td style="float:right">{{response.transaction_reference}}</td>
+        </tr>
+        
+        
+        <tr>
+            <td style="float:left">Vat context:</td>
+            <td style="float:right">{{response.vat_context}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Vat amount:</td>
+            <td style="float:right">{{response.vatamount}}</td>
+        </tr>
+        <tr>
+            <td style="float:left">Vat items:</td>
+            <td style="float:right">{{response.vatitems}}</td>
         </tr>
     </table>
+    </div>
+    <a (click)="downloadVariable()" >download </a>
+</div>
 </div>
