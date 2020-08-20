@@ -1,16 +1,23 @@
 <div>
     <div class= "header">
         <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToXLFmDAZywYcDjy0bUNQEffqpIVgwxnXRmA&usqp=CAU" alt="">
+        <div class="subheader">
+            <form>
+            <input id="myForm" type="file" name="file" (change)="postMethod($event.target.files)">
+            </form>
 
-        <form>
-        <input id="myForm" type="file" name="file" (change)="postMethod($event.target.files)">
-        </form>
+            <div *ngIf="response">
+                <button id="refresh" (click)=refresh()> Retry this file</button>
+            </div>
+            <div *ngIf="response">
+                <button (click)="downloadVariable()" >Download</button>
+            </div>
+        </div>
     </div>
 
-<div *ngIf="response">
-    <button id="refresh" (click)=refresh()> Retry this file</button>
-</div>
-<div class="loader" [ngStyle]="{'display': display}"> </div>
+    <br>
+
+    <div class="loader" [ngStyle]="{'display': display}"> </div>
 
 <div *ngIf="response">
     <div class="body">
@@ -353,6 +360,5 @@
         </tr>
     </table>
     </div>
-    <a (click)="downloadVariable()" >download </a>
 </div>
 </div>

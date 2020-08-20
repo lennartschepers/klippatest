@@ -43,7 +43,6 @@ export class DocPostComponent implements OnInit {
 
     const blob = new Blob([val.data], { type: 'text/json' });
     const fileurl = window.URL.createObjectURL(blob);
-    window.open(fileurl);
 
     return this.response = val.data;
     });
