@@ -82,18 +82,13 @@ button, input {
   background: #ffffff;
   padding: 20px;
   margin: 0 5px;
-  border-radius: 6px;
+  border-radius: 4px;
   display: inline-block;
   transition: all 0.3s ease 0s;
   font-weight: 600;
   -webkit-box-shadow: 0px 1px 8px 0px rgba(68,68,68,0.75);
   -moz-box-shadow: 0px 1px 8px 0px rgba(68,68,68,0.75);
   box-shadow: 0px 1px 8px 0px rgba(68,68,68,0.75);
-  border-radius: 50px;
-}
-
-input {
-  border-radius:50px;
 }
 
 br {
